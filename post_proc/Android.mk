@@ -39,6 +39,11 @@ LOCAL_C_INCLUDES := \
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 LOCAL_HEADER_LIBRARIES += libsystem_headers
 
+ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DLKM)),true)
+    LOCAL_HEADER_LIBRARIES += audio_kernel_headers
+    LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/vendor/qcom/opensource/audio-kernel/include
+endif
+
 ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
     LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/techpack/audio/include
     LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
@@ -76,6 +81,11 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 LOCAL_HEADER_LIBRARIES += libsystem_headers
+
+ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DLKM)),true)
+    LOCAL_HEADER_LIBRARIES += audio_kernel_headers
+    LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/vendor/qcom/opensource/audio-kernel/include
+endif
 
 ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
     LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/techpack/audio/include
